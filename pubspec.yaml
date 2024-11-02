@@ -4,13 +4,21 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.5.3
+  sdk: '>=3.4.4 <4.0.0'
+  flutter: ">=3.0.0"
 
 dependencies:
+  cached_network_image: ^3.4.1
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.8
+  flutter_cache_manager: ^3.4.1
+  flutter_svg: ^2.0.11
+  fluttertoast: ^8.2.8
+  logger:
+    path: logger
+  lottie: ^3.1.3
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   flutter_test:
@@ -20,3 +28,17 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: font/poppins_light_300.ttf
+          weight: 300
+        - asset: font/poppins_regular_400.ttf
+          weight: 400
+        - asset: font/poppins_medium_500.ttf
+          weight: 500
+        - asset: font/poppins_semi_bold_600.ttf
+          weight: 600
+        - asset: font/poppins_bold_700.ttf
+          weight: 700
