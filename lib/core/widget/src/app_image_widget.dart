@@ -46,8 +46,8 @@ class AppImageWidget extends StatelessWidget {
       child: SizedBox(
         width: loadingSize ?? 20.0,
         height: loadingSize ?? 20.0,
-        child: CircularProgressIndicator(
-          valueColor: AlwaysStoppedAnimation<Color>(AppColor.primary),
+        child: const CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(AppColor.primaryColor),
           strokeWidth: 2,
         ),
       ),

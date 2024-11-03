@@ -9,33 +9,9 @@ abstract class AppTheme {
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    primaryColor: AppColor.primary,
+    primaryColor: AppColor.primaryColor,
     brightness: Brightness.light,
-    scaffoldBackgroundColor: AppColor.lightBackground,
+    scaffoldBackgroundColor: AppColor.background,
     fontFamily: _fontFamily,
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.primary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-    ),
-  );
-
-  static ThemeData dartTheme = ThemeData(
-    useMaterial3: true,
-    primaryColor: AppColor.primary,
-    brightness: Brightness.dark,
-    scaffoldBackgroundColor: AppColor.darkBackground,
-    fontFamily: _fontFamily,
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColor.primary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-      ),
-    ),
   );
 }

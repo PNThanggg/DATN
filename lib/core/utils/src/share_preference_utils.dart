@@ -14,7 +14,7 @@ abstract class SharePreferenceUtils {
     _instance ??= await SharedPreferences.getInstance();
   }
 
-  static String? getStringOrNullKey(String key) => instance.getString(key);
+  static String? getString(String key) => instance.getString(key);
 
   static Future<void> setStringKey(
     String key,
