@@ -84,7 +84,11 @@ class AppTouchable extends StatelessWidget {
       color: AppColor.white,
       borderRadius: BorderRadius.all(Radius.circular(87)),
       boxShadow: [
-        BoxShadow(color: Color(0x40000000), offset: Offset(0, 0), blurRadius: 10),
+        BoxShadow(
+          color: Color(0x40000000),
+          offset: Offset(0, 0),
+          blurRadius: 10,
+        ),
       ],
     ),
   });

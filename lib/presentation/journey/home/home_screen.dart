@@ -26,19 +26,20 @@ class HomeScreen extends GetView<HomeController> {
           AppHeader(
             title: TranslationConstants.bloodHealth.tr,
             leftWidget: SizedBox(width: 40.0.sp),
-            titleStyle: const TextStyle(fontWeight: FontWeight.w500),
           ),
           Expanded(
             child: ScrollConfiguration(
               behavior: const DisableGlowBehavior(),
               child: SingleChildScrollView(
-                padding: EdgeInsets.all(17.0.sp),
+                padding: EdgeInsets.all(16.0.sp),
                 child: Column(
                   children: [
                     Container(
                       width: Get.width,
                       decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
                         gradient: LinearGradient(
                           colors: [
                             Color(0xFFFC8D8D),
@@ -67,7 +68,7 @@ class HomeScreen extends GetView<HomeController> {
                                       width: 80.0.sp,
                                       height: 70.0.sp,
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -80,7 +81,7 @@ class HomeScreen extends GetView<HomeController> {
                                 Text(
                                   TranslationConstants.heartRate.tr,
                                   style: TextStyle(
-                                    fontSize: 20.0.sp,
+                                    fontSize: 16.0.sp,
                                     fontWeight: FontWeight.w500,
                                     color: AppColor.white,
                                   ),
@@ -91,7 +92,7 @@ class HomeScreen extends GetView<HomeController> {
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 12.0.sp,
-                                    fontWeight: FontWeight.w300,
+                                    fontWeight: FontWeight.w500,
                                     color: AppColor.white,
                                   ),
                                 ),
@@ -100,36 +101,43 @@ class HomeScreen extends GetView<HomeController> {
                                   onPressed: controller.onPressHeartBeat,
                                   decoration: BoxDecoration(
                                     gradient: const LinearGradient(
-                                      colors: [Color(0xFFFFFFFF), Color(0xFFD9D9D9)],
+                                      colors: [
+                                        Color(0xFFFFFFFF),
+                                        Color(0xFFD9D9D9),
+                                      ],
                                       begin: Alignment.topCenter,
                                       end: Alignment.bottomCenter,
                                     ),
-                                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
                                     boxShadow: [
                                       BoxShadow(
                                         color: const Color(0xFF000000).withOpacity(0.4),
-                                        offset: const Offset(2, 2),
+                                        offset: const Offset(0, 0),
                                         blurRadius: 10,
-                                        spreadRadius: 2,
                                       ),
                                     ],
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 12.0.sp, horizontal: 30.0.sp),
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 12.0.sp,
+                                      horizontal: 30.0.sp,
+                                    ),
                                     child: Text(
                                       TranslationConstants.heartRateButton.tr,
                                       style: TextStyle(
-                                        fontSize: 20.0.sp,
-                                        fontWeight: FontWeight.w700,
+                                        fontSize: 16.0.sp,
+                                        fontWeight: FontWeight.w600,
                                         color: const Color(0xFFC73838),
-                                        height: 25 / 20,
                                       ),
                                     ),
                                   ),
                                 )
                               ],
                             ),
-                          )
+                          ),
+                          SizedBox(width: 8.0.sp),
                         ],
                       ),
                     ),
@@ -140,7 +148,9 @@ class HomeScreen extends GetView<HomeController> {
                           child: AppTouchable.common(
                             backgroundColor: const Color(0xFF97C7FF),
                             onPressed: controller.onPressBloodPressure,
-                            height: 128.0.sp,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 20.0.sp
+                            ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -151,7 +161,10 @@ class HomeScreen extends GetView<HomeController> {
                                 SizedBox(height: 4.0.sp),
                                 Text(
                                   TranslationConstants.bloodPressure.tr,
-                                  style: textStyle18500().copyWith(color: AppColor.white),
+                                  style: textStyle18500().copyWith(
+                                    color: AppColor.white,
+                                    fontSize: 16.0.sp,
+                                  ),
                                 ),
                               ],
                             ),
@@ -162,7 +175,9 @@ class HomeScreen extends GetView<HomeController> {
                           child: AppTouchable.common(
                             backgroundColor: const Color(0xFFBA8FFF),
                             onPressed: controller.onPressBloodSugar,
-                            height: 128.0.sp,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 20.0.sp
+                            ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -173,7 +188,10 @@ class HomeScreen extends GetView<HomeController> {
                                 SizedBox(height: 4.0.sp),
                                 Text(
                                   TranslationConstants.bloodSugar.tr,
-                                  style: textStyle18500().copyWith(color: AppColor.white),
+                                  style: textStyle18500().copyWith(
+                                    color: AppColor.white,
+                                    fontSize: 16.0.sp,
+                                  ),
                                 ),
                               ],
                             ),
@@ -188,7 +206,9 @@ class HomeScreen extends GetView<HomeController> {
                           child: AppTouchable.common(
                             backgroundColor: const Color(0xFF6DB80D),
                             onPressed: controller.onPressWeightAndBMI,
-                            height: 128.0.sp,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 20.0.sp
+                            ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -199,7 +219,10 @@ class HomeScreen extends GetView<HomeController> {
                                 SizedBox(height: 4.0.sp),
                                 Text(
                                   TranslationConstants.weightAndBMI.tr,
-                                  style: textStyle18500().copyWith(color: AppColor.white),
+                                  style: textStyle18500().copyWith(
+                                    color: AppColor.white,
+                                    fontSize: 16.0.sp,
+                                  ),
                                 ),
                               ],
                             ),
@@ -210,7 +233,9 @@ class HomeScreen extends GetView<HomeController> {
                           child: AppTouchable.common(
                             backgroundColor: const Color(0xFFFFEFC6),
                             onPressed: controller.onPressFoodScanner,
-                            height: 128.0.sp,
+                            padding: EdgeInsets.symmetric(
+                              vertical: 20.0.sp
+                            ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -221,7 +246,10 @@ class HomeScreen extends GetView<HomeController> {
                                 SizedBox(height: 4.0.sp),
                                 Text(
                                   TranslationConstants.foodScanner.tr,
-                                  style: textStyle18500().copyWith(color: AppColor.grayText),
+                                  style: textStyle18500().copyWith(
+                                    color: AppColor.grayText,
+                                    fontSize: 16.0.sp,
+                                  ),
                                   textAlign: TextAlign.center,
                                 ),
                               ],

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../common/constants/app_image.dart';
+import '../../../../common/util/disable_glow_behavior.dart';
 import '../../../../common/util/translation/app_translation.dart';
 import '../../../../domain/model/heart_rate_model.dart';
 import '../../../controller/app_controller.dart';
@@ -21,7 +22,10 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
 
   Widget _buildChart() {
     return Padding(
-      padding: EdgeInsets.only(right: 12.0.sp, top: 12.0.sp),
+      padding: EdgeInsets.only(
+        right: 12.0.sp,
+        top: 12.0.sp,
+      ),
       child: Obx(
         () => AppHeartRateChartWidget(
           listChartData: Get.find<AppController>().chartListData,
@@ -60,12 +64,16 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
           height: Get.width / 3,
         ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 68.sp),
+          padding: EdgeInsets.symmetric(horizontal: 48.sp),
           child: Text(
             TranslationConstants.measureNowOrAdd.tr,
             textAlign: TextAlign.center,
             style: textStyle20700().merge(
-              const TextStyle(color: AppColor.black),
+              TextStyle(
+                color: AppColor.black,
+                fontSize: 16.0.sp,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ),
@@ -79,7 +87,10 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
         Container(
           width: Get.width,
           padding: EdgeInsets.symmetric(vertical: 8.0.sp),
-          margin: EdgeInsets.symmetric(horizontal: 17.0.sp, vertical: 16.0.sp),
+          margin: EdgeInsets.symmetric(
+            horizontal: 12.0.sp,
+            vertical: 12.0.sp,
+          ),
           decoration: commonDecoration(),
           child: Row(
             children: [
@@ -93,7 +104,13 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                     Obx(
                       () => Text(
                         '${controller.hrAvg.value}',
-                        style: textStyle22700(),
+                        style: textStyle20700().merge(
+                          TextStyle(
+                            color: AppColor.black,
+                            fontSize: 16.0.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -104,12 +121,24 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                   children: [
                     Text(
                       TranslationConstants.min.tr,
-                      style: textStyle18400(),
+                      style: textStyle20700().merge(
+                        TextStyle(
+                          color: AppColor.black,
+                          fontSize: 16.0.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                     Obx(
                       () => Text(
                         '${controller.hrMin.value}',
-                        style: textStyle22700(),
+                        style: textStyle20700().merge(
+                          TextStyle(
+                            color: AppColor.black,
+                            fontSize: 16.0.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -120,12 +149,24 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                   children: [
                     Text(
                       TranslationConstants.max.tr,
-                      style: textStyle18400(),
+                      style: textStyle20700().merge(
+                        TextStyle(
+                          color: AppColor.black,
+                          fontSize: 16.0.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                     Obx(
                       () => Text(
                         '${controller.hrMax.value}',
-                        style: textStyle22700(),
+                        style: textStyle20700().merge(
+                          TextStyle(
+                            color: AppColor.black,
+                            fontSize: 16.0.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -138,19 +179,22 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
           child: Container(
             width: Get.width,
             padding: EdgeInsets.symmetric(vertical: 8.0.sp),
-            margin: EdgeInsets.symmetric(horizontal: 17.0.sp),
+            margin: EdgeInsets.symmetric(horizontal: 12.0.sp),
             decoration: commonDecoration(),
             child: _buildChart(),
           ),
         ),
         Container(
-          height: 79.0.sp,
           width: Get.width,
-          padding: EdgeInsets.only(top: 7.0.sp, left: 14.0.sp, right: 4.0.sp),
-          margin: EdgeInsets.symmetric(horizontal: 16.0.sp, vertical: 8.0.sp),
-          decoration: const BoxDecoration(
-            image: DecorationImage(fit: BoxFit.fill, image: AssetImage(AppImage.ic_box)),
+          padding: EdgeInsets.symmetric(
+            horizontal: 12.0.sp,
+            vertical: 8.0.sp,
           ),
+          margin: EdgeInsets.symmetric(
+            horizontal: 12.0.sp,
+            vertical: 16.0.sp,
+          ),
+          decoration: commonDecoration(),
           child: Obx(() {
             DateTime dateTime =
                 DateTime.fromMillisecondsSinceEpoch(controller.currentHeartRateModel.value.timeStamp ?? 0);
@@ -191,27 +235,34 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                     Text(
                       '$value',
                       style: TextStyle(
-                        fontSize: 37.0.sp,
+                        fontSize: 32.0.sp,
                         fontWeight: FontWeight.w700,
                         color: AppColor.black,
                       ),
                     ),
-                    SizedBox(height: 2.0.sp),
                     Text(
                       'BPM',
-                      style: textStyle14500().merge(const TextStyle(height: 1)),
+                      style: textStyle14500().merge(
+                        const TextStyle(height: 1),
+                      ),
                     ),
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0.sp, vertical: 7.0.sp),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.0.sp,
+                    vertical: 8.0.sp,
+                  ),
                   decoration: BoxDecoration(
                     color: color,
                     borderRadius: BorderRadius.circular(8.0.sp),
                   ),
                   child: Text(
                     status,
-                    style: textStyle20700(),
+                    style: textStyle20700().copyWith(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16.0.sp,
+                    ),
                   ),
                 ),
                 AppTouchable(
@@ -226,7 +277,6 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
             );
           }),
         ),
-        SizedBox(height: 4.0.sp),
       ],
     );
   }
@@ -240,81 +290,31 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
         children: [
           AppHeader(
             title: TranslationConstants.heartRate.tr,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColor.red,
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0x40000000),
-                  offset: Offset(0, 4.0.sp),
-                  blurRadius: 4.0.sp,
-                ),
-              ],
             ),
             leftWidget: AppTouchable(
               width: 40.0.sp,
               height: 40.0.sp,
-              padding: EdgeInsets.all(2.0.sp),
               onPressed: Get.back,
-              outlinedBorder: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0.sp),
-              ),
               child: BackButton(
                 color: AppColor.white,
                 onPressed: Get.back,
               ),
             ),
             additionSpaceButtonLeft: 40.0.sp,
-            rightWidget: SizedBox(
-              child: Obx(
-                () => Get.find<AppController>().listHeartRateModel.isNotEmpty
-                    ? AppTouchable(
-                        width: 80.0.sp,
-                        height: 28.0.sp,
-                        onPressed: controller.isExporting.value ? null : controller.onPressExport,
-                        outlinedBorder: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32.0.sp),
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColor.white,
-                          borderRadius: BorderRadius.circular(32.0.sp),
-                        ),
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: controller.isExporting.value
-                              ? Padding(
-                                  padding: EdgeInsets.all(4.0.sp),
-                                  child: Center(
-                                    child: CircularProgressIndicator(
-                                      color: AppColor.red,
-                                      strokeWidth: 3.0.sp,
-                                    ),
-                                  ),
-                                )
-                              : Text(
-                                  TranslationConstants.export.tr,
-                                  style: textStyle18500().merge(
-                                    const TextStyle(color: AppColor.red),
-                                  ),
-                                ),
-                        ),
-                      )
-                    : SizedBox(
-                        width: 40.sp,
-                      ),
-              ),
-            ),
             titleStyle: const TextStyle(color: AppColor.white),
             extendWidget: AppTouchable(
               height: 40.0.sp,
               width: Get.width,
-              margin: EdgeInsets.fromLTRB(27.0.sp, 14.0.sp, 27.0.sp, 0),
+              margin: EdgeInsets.fromLTRB(12.0.sp, 12.0.sp, 12.0.sp, 0),
               onPressed: controller.onPressDateRange,
               outlinedBorder: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(87.0.sp),
+                borderRadius: BorderRadius.circular(8.0.sp),
               ),
               decoration: BoxDecoration(
                 color: AppColor.white,
-                borderRadius: BorderRadius.circular(87.0.sp),
+                borderRadius: BorderRadius.circular(8.0.sp),
                 boxShadow: [
                   BoxShadow(
                     color: const Color(0x80000000),
@@ -325,101 +325,178 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
               ),
               child: Row(
                 children: [
-                  SizedBox(width: 44.0.sp),
+                  SizedBox(
+                    width: 40.0.sp,
+                  ),
                   Expanded(
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
-                      child: Obx(() => Text(
-                            '${DateFormat('MMM dd, yyyy').format(controller.startDate.value)} - ${DateFormat('MMM dd, yyyy').format(controller.endDate.value)}',
-                            style: textStyle18400(),
-                          )),
+                      child: Obx(
+                        () => Text(
+                          '${DateFormat('MMM dd, yyyy').format(controller.startDate.value)} - ${DateFormat('MMM dd, yyyy').format(controller.endDate.value)}',
+                          textAlign: TextAlign.center,
+                          style: textStyle18700().copyWith(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.0.sp,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                  AppImageWidget.asset(path: AppImage.ic_filter, width: 40.0.sp),
-                  SizedBox(width: 4.0.sp),
+                  AppImageWidget.asset(
+                    path: AppImage.ic_filter,
+                    width: 40.0.sp,
+                  ),
                 ],
               ),
             ),
           ),
           Expanded(
-            child: Obx(
-              () => controller.isLoading.value
-                  ? const Center(
-                      child: CircularProgressIndicator(
-                        color: AppColor.red,
+            child: ScrollConfiguration(
+              behavior: const DisableGlowBehavior(),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: Get.height * 0.8,
+                      child: Obx(
+                        () => controller.isLoading.value
+                            ? const Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColor.red,
+                                ),
+                              )
+                            : Get.find<AppController>().listHeartRateModel.isEmpty
+                                ? _buildBodyEmpty()
+                                : _buildBodyData(),
                       ),
-                    )
-                  : Get.find<AppController>().listHeartRateModel.isEmpty
-                      ? _buildBodyEmpty()
-                      : _buildBodyData(),
-            ),
-          ),
-          if (DateTime.now().isAfter(DateTime(2023, 4, 20)))
-            AppTouchable.common(
-              onPressed: controller.onPressMeasureNow,
-              height: 70.0.sp,
-              backgroundColor: AppColor.green,
-              margin: EdgeInsets.fromLTRB(17.0.sp, 0, 17.0.sp, 12.0.sp),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AppImageWidget.asset(
-                    path: AppImage.ic_heart_rate,
-                    width: 60.0.sp,
-                  ),
-                  SizedBox(width: 8.0.sp),
-                  Text(
-                    TranslationConstants.measureNow.tr,
-                    style: textStyle24700(),
-                  ),
-                ],
+                    ),
+                    AppTouchable.common(
+                      onPressed: controller.onPressMeasureNow,
+                      height: 70.0.sp,
+                      backgroundColor: AppColor.green,
+                      margin: EdgeInsets.fromLTRB(12.0.sp, 0, 12.0.sp, 12.0.sp),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppImageWidget.asset(
+                            path: AppImage.ic_heart_rate,
+                            width: 48.0.sp,
+                          ),
+                          SizedBox(width: 8.0.sp),
+                          Text(
+                            TranslationConstants.measureNow.tr,
+                            style: textStyle18700().copyWith(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16.0.sp,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12.0.sp,
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: AppTouchable.common(
+                              onPressed: controller.onPressAddAlarm,
+                              height: 70.0.sp,
+                              backgroundColor: AppColor.gold,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  AppImageWidget.asset(
+                                    path: AppImage.ic_alarm,
+                                    width: 40.0.sp,
+                                    color: AppColor.black,
+                                  ),
+                                  SizedBox(
+                                    width: 4.0.sp,
+                                  ),
+                                  Text(
+                                    TranslationConstants.setAlarm.tr,
+                                    style: textStyle18700().copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 16.0.sp,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 12.0.sp),
+                          Expanded(
+                            child: AppTouchable.common(
+                              onPressed: controller.onPressAddData,
+                              height: 70.0.sp,
+                              backgroundColor: AppColor.primaryColor,
+                              child: Text(
+                                '+ ${TranslationConstants.addData.tr}',
+                                style: textStyle18700().copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16.0.sp,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    AppTouchable.common(
+                      onPressed: controller.isExporting.value ? null : controller.onPressExport,
+                      height: 70.0.sp,
+                      backgroundColor: AppColor.green,
+                      margin: EdgeInsets.fromLTRB(12.0.sp, 12, 12.0.sp, 12.0.sp),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Obx(
+                            () => Get.find<AppController>().listHeartRateModel.isNotEmpty
+                                ? FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: controller.isExporting.value
+                                        ? Padding(
+                                            padding: EdgeInsets.all(4.0.sp),
+                                            child: Center(
+                                              child: CircularProgressIndicator(
+                                                color: AppColor.red,
+                                                strokeWidth: 3.0.sp,
+                                              ),
+                                            ),
+                                          )
+                                        : Text(
+                                            TranslationConstants.export.tr,
+                                            textAlign: TextAlign.center,
+                                            style: textStyle18700().copyWith(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 16.0.sp,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                  )
+                                : SizedBox(
+                                    width: 40.sp,
+                                  ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).padding.bottom + 12.0.sp,
+                    ),
+                  ],
+                ),
               ),
-            )
-          else
-            const SizedBox.shrink(),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 17.0.sp),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: AppTouchable.common(
-                    onPressed: controller.onPressAddAlarm,
-                    height: 70.0.sp,
-                    backgroundColor: AppColor.gold,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppImageWidget.asset(
-                          path: AppImage.ic_alarm,
-                          width: 40.0.sp,
-                          color: AppColor.black,
-                        ),
-                        Text(
-                          TranslationConstants.setAlarm.tr,
-                          style: textStyle18700(),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(width: 12.0.sp),
-                Expanded(
-                  flex: 5,
-                  child: AppTouchable.common(
-                    onPressed: controller.onPressAddData,
-                    height: 70.0.sp,
-                    backgroundColor: AppColor.primaryColor,
-                    child: Text(
-                      '+ ${TranslationConstants.addData.tr}',
-                      style: textStyle20700(),
-                    ),
-                  ),
-                ),
-              ],
             ),
           ),
-          SizedBox(height: MediaQuery.of(context).padding.bottom + 17.0.sp),
         ],
       ),
     );

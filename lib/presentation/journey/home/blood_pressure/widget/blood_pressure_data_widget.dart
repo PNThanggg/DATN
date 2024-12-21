@@ -1,5 +1,4 @@
 import 'package:datn/domain/enum/blood_pressure_type.dart';
-import 'package:datn/presentation/journey/home/blood_pressure/widget/systolic_diastolic_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,6 +13,7 @@ import '../../../../widget/app_touchable.dart';
 import '../../../../widget/container_widget.dart';
 import '../../widget/home_bar_chart_widget/home_bar_chart.dart';
 import '../blood_pressure_controller.dart';
+import 'systolic_diastolic_widget.dart';
 
 class BloodPressureDataWidget extends GetView<BloodPressureController> {
   const BloodPressureDataWidget({super.key});

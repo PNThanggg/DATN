@@ -80,7 +80,7 @@ class AppHeader extends StatelessWidget {
                         title ?? '',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 14.0.sp,
+                          fontSize: 16.0.sp,
                           fontWeight: FontWeight.w600,
                           color: AppColor.black,
                           height: 25 / 20,
