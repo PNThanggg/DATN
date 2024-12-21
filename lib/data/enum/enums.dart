@@ -1,1 +1,0 @@
-enum SnackBarType { done, error, warning }

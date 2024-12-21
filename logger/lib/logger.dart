@@ -1,5 +1,3 @@
-library logger;
-
 import 'dart:convert';
 import 'dart:math';
 
