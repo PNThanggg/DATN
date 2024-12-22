@@ -31,40 +31,16 @@ class BloodHeaderWidget extends StatelessWidget {
       title: title,
       decoration: BoxDecoration(
         color: background,
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0x40000000),
-            offset: Offset(0, 4.0.sp),
-            blurRadius: 4.0.sp,
-          ),
-        ],
       ),
       titleStyle: const TextStyle(color: AppColor.white),
-      leftWidget: SizedBox(
-        width: 80.0.sp,
-        child: Row(
-          children: [
-            AppTouchable(
-              width: 40.0.sp,
-              height: 40.0.sp,
-              padding: EdgeInsets.all(2.0.sp),
-              onPressed: Get.back,
-              outlinedBorder: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(22.0.sp),
-              ),
-              child: BackButton(
-                color: AppColor.white,
-                onPressed: () => Get.back(),
-              ),
-            ),
-            const Spacer()
-          ],
+      leftWidget: AppTouchable(
+        width: 40.0.sp,
+        height: 40.0.sp,
+        onPressed: Get.back,
+        child: BackButton(
+          color: AppColor.white,
+          onPressed: () => Get.back(),
         ),
-      ),
-      rightWidget: ExportButton(
-        titleColor: background,
-        onPressed: onExported,
-        isLoading: isLoading,
       ),
       extendWidget: extendWidget,
     );

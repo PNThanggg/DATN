@@ -34,6 +34,7 @@ class BloodSugarScreen extends GetView<BloodSugarController> {
   @override
   Widget build(BuildContext context) {
     controller.context = context;
+
     return AppContainer(
       child: Column(
         children: [
@@ -60,11 +61,12 @@ class BloodSugarScreen extends GetView<BloodSugarController> {
           Expanded(
             child: Obx(
               () {
-                if (controller.rxIsEmptyList.value == false) {
+                if (!controller.rxIsEmptyList.value) {
                   return const BloodSugarDataWidget();
                 }
+
                 return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.sp),
+                  padding: EdgeInsets.symmetric(horizontal: 12.sp),
                   child: EmptyWidget(
                     imagePath: AppImage.ic_blood_sugar_empty_data,
                     imageWidth: 120.sp,
@@ -75,14 +77,14 @@ class BloodSugarScreen extends GetView<BloodSugarController> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 17.sp),
+            padding: EdgeInsets.symmetric(horizontal: 12.sp),
             child: AlarmAddDataButton(
               onSetAlarm: controller.onSetAlarm,
               onAddData: controller.onAddData,
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).padding.bottom + 16.sp,
+            height: MediaQuery.of(context).padding.bottom + 12.sp,
           )
         ],
       ),

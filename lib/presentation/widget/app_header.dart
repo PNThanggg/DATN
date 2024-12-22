@@ -51,8 +51,18 @@ class AppHeader extends StatelessWidget {
             0.0,
             12.0.sp,
           ),
-      color: decoration == null ? backgroundColor ?? Colors.transparent : null,
-      decoration: decoration,
+      decoration: decoration ??
+          BoxDecoration(
+            color: backgroundColor ?? Colors.white,
+            shape: BoxShape.rectangle,
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                offset: Offset(0, 0),
+                blurRadius: 4,
+              )
+            ],
+          ),
       child: Column(
         children: [
           Row(

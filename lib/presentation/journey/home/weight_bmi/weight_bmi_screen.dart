@@ -32,15 +32,8 @@ class WeightBMIScreen extends GetView<WeightBMIController> {
         children: [
           AppHeader(
             title: TranslationConstants.weightAndBMI.tr,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColor.green,
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0x40000000),
-                  offset: Offset(0, 4.0.sp),
-                  blurRadius: 4.0.sp,
-                ),
-              ],
             ),
             titleStyle: const TextStyle(color: AppColor.white),
             leftWidget: BackButton(
@@ -67,7 +60,7 @@ class WeightBMIScreen extends GetView<WeightBMIController> {
                       if (controller.bmiList.isNotEmpty) {
                         return SingleChildScrollView(
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.sp).copyWith(top: 16.sp),
+                            padding: EdgeInsets.symmetric(horizontal: 12.sp).copyWith(top: 12.sp),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -124,14 +117,14 @@ class WeightBMIScreen extends GetView<WeightBMIController> {
                                 ),
                                 SizedBox(
                                   height: 16.sp,
-                                )
+                                ),
                               ],
                             ),
                           ),
                         );
                       } else {
                         return Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.sp),
+                          padding: EdgeInsets.symmetric(horizontal: 12.sp),
                           child: EmptyWidget(
                             imagePath: AppImage.weight_scale_lottie,
                             message: TranslationConstants.addYourRecordToSeeStatistics.tr,
@@ -144,9 +137,9 @@ class WeightBMIScreen extends GetView<WeightBMIController> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: 16.sp,
+                    horizontal: 12.sp,
                   ).copyWith(
-                    bottom: 16.sp,
+                    bottom: 12.sp,
                   ),
                   child: AlarmAddDataButton(
                     onSetAlarm: controller.onSetAlarm,

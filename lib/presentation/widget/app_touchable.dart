@@ -106,13 +106,21 @@ class AppTouchable extends StatelessWidget {
     this.padding,
     this.margin,
     this.outlinedBorder = const RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(20)),
+      borderRadius: BorderRadius.all(
+        Radius.circular(20),
+      ),
     ),
     this.decoration = const BoxDecoration(
       color: AppColor.white,
-      borderRadius: BorderRadius.all(Radius.circular(20)),
+      borderRadius: BorderRadius.all(
+        Radius.circular(20),
+      ),
       boxShadow: [
-        BoxShadow(color: Color(0x40000000), offset: Offset(0, 0), blurRadius: 10),
+        BoxShadow(
+          color: Color(0x40000000),
+          offset: Offset(0, 0),
+          blurRadius: 10,
+        ),
       ],
     ),
   });

@@ -27,13 +27,13 @@ class AlarmScreen extends GetView<AlarmController> {
               () {
                 if (controller.alarmList.isEmpty) {
                   return Padding(
-                    padding: EdgeInsets.all(48.0.sp),
+                    padding: EdgeInsets.all(32.0.sp),
                     child: Center(
                       child: Text(
                         TranslationConstants.noAlarm.tr,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 12.0.sp,
+                          fontSize: 16.0.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -44,7 +44,7 @@ class AlarmScreen extends GetView<AlarmController> {
                 return ListView.builder(
                   padding: EdgeInsets.only(
                     top: 12.0.sp,
-                    bottom: 100.0.sp,
+                    bottom: 60.0.sp,
                   ),
                   itemCount: controller.alarmList.length,
                   itemBuilder: (context, index) {
