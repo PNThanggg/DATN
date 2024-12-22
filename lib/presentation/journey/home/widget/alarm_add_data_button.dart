@@ -24,24 +24,33 @@ class AlarmAddDataButton extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          flex: 3,
           child: AppTouchable.common(
             onPressed: () {
               onSetAlarm.call();
             },
-            height: 70.0.sp,
+            padding: EdgeInsets.symmetric(
+              vertical: 12.0.sp,
+            ),
             backgroundColor: AppColor.gold,
-            child: Column(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AppImageWidget.asset(
                   path: AppImage.ic_alarm,
-                  width: 40.0.sp,
+                  width: 32.0.sp,
+                  height: 32.0.sp,
                   color: AppColor.black,
+                ),
+                SizedBox(
+                  width: 4.0.sp,
                 ),
                 Text(
                   TranslationConstants.setAlarm.tr,
-                  style: textStyle18700(),
+                  style: textStyle18700().copyWith(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16.0.sp,
+                    color: Colors.black,
+                  ),
                 ),
               ],
             ),
@@ -49,14 +58,19 @@ class AlarmAddDataButton extends StatelessWidget {
         ),
         SizedBox(width: 12.0.sp),
         Expanded(
-          flex: 5,
           child: AppTouchable.common(
             onPressed: onAddData,
-            height: 70.0.sp,
+            padding: EdgeInsets.symmetric(
+              vertical: 18.0.sp,
+            ),
             backgroundColor: AppColor.primaryColor,
             child: Text(
               '+ ${TranslationConstants.addData.tr}',
-              style: textStyle20700(),
+              style: textStyle18700().copyWith(
+                fontWeight: FontWeight.w600,
+                fontSize: 16.0.sp,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

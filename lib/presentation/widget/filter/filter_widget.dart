@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -23,14 +24,14 @@ class FilterWidget extends StatelessWidget {
     return AppTouchable(
       height: 40.0.sp,
       width: Get.width,
-      margin: EdgeInsets.fromLTRB(27.0.sp, 14.0.sp, 27.0.sp, 0),
+      margin: EdgeInsets.fromLTRB(12.0.sp, 12.0.sp, 12.0.sp, 0),
       onPressed: onPressed,
       outlinedBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(87.0.sp),
+        borderRadius: BorderRadius.circular(8.0.sp),
       ),
       decoration: BoxDecoration(
         color: AppColor.white,
-        borderRadius: BorderRadius.circular(87.0.sp),
+        borderRadius: BorderRadius.circular(8.0.sp),
         boxShadow: [
           BoxShadow(
             color: const Color(0x80000000),
@@ -41,13 +42,19 @@ class FilterWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          SizedBox(width: 44.0.sp),
+          SizedBox(
+            width: 40.0.sp,
+          ),
           Expanded(
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(
                 title,
-                style: textStyle18400(),
+                style: textStyle18700().copyWith(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16.0.sp,
+                  color: Colors.black,
+                ),
               ),
             ),
           ),
@@ -55,7 +62,6 @@ class FilterWidget extends StatelessWidget {
             path: AppImage.ic_filter,
             width: 40.0.sp,
           ),
-          SizedBox(width: 4.0.sp),
         ],
       ),
     );

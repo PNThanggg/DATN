@@ -99,7 +99,13 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                   children: [
                     Text(
                       TranslationConstants.average.tr,
-                      style: textStyle18400(),
+                      style: textStyle20700().merge(
+                        TextStyle(
+                          color: AppColor.black,
+                          fontSize: 16.0.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ),
                     Obx(
                       () => Text(
@@ -359,7 +365,7 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: Get.height * 0.8,
+                      height: Get.height * 0.75,
                       child: Obx(
                         () => controller.isLoading.value
                             ? const Center(
@@ -374,7 +380,9 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                     ),
                     AppTouchable.common(
                       onPressed: controller.onPressMeasureNow,
-                      height: 70.0.sp,
+                      padding: EdgeInsets.symmetric(
+                        vertical: 12.0.sp,
+                      ),
                       backgroundColor: AppColor.green,
                       margin: EdgeInsets.fromLTRB(12.0.sp, 0, 12.0.sp, 12.0.sp),
                       child: Row(
@@ -382,7 +390,7 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                         children: [
                           AppImageWidget.asset(
                             path: AppImage.ic_heart_rate,
-                            width: 48.0.sp,
+                            width: 32.0.sp,
                           ),
                           SizedBox(width: 8.0.sp),
                           Text(
@@ -405,14 +413,17 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                           Expanded(
                             child: AppTouchable.common(
                               onPressed: controller.onPressAddAlarm,
-                              height: 70.0.sp,
                               backgroundColor: AppColor.gold,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 12.0.sp,
+                              ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   AppImageWidget.asset(
                                     path: AppImage.ic_alarm,
-                                    width: 40.0.sp,
+                                    width: 32.0.sp,
+                                    height: 32.0.sp,
                                     color: AppColor.black,
                                   ),
                                   SizedBox(
@@ -423,7 +434,7 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                                     style: textStyle18700().copyWith(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 16.0.sp,
-                                      color: Colors.white,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ],
@@ -434,8 +445,10 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                           Expanded(
                             child: AppTouchable.common(
                               onPressed: controller.onPressAddData,
-                              height: 70.0.sp,
                               backgroundColor: AppColor.primaryColor,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 18.0.sp,
+                              ),
                               child: Text(
                                 '+ ${TranslationConstants.addData.tr}',
                                 style: textStyle18700().copyWith(
@@ -449,25 +462,29 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                         ],
                       ),
                     ),
-                    AppTouchable.common(
-                      onPressed: controller.isExporting.value ? null : controller.onPressExport,
-                      height: 70.0.sp,
-                      backgroundColor: AppColor.green,
-                      margin: EdgeInsets.fromLTRB(12.0.sp, 12, 12.0.sp, 12.0.sp),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Obx(
-                            () => Get.find<AppController>().listHeartRateModel.isNotEmpty
-                                ? FittedBox(
+                    Obx(
+                      () => Get.find<AppController>().listHeartRateModel.isNotEmpty
+                          ? AppTouchable.common(
+                              onPressed: controller.isExporting.value ? null : controller.onPressExport,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 16.0.sp,
+                              ),
+                              backgroundColor: AppColor.green,
+                              margin: EdgeInsets.fromLTRB(12.0.sp, 12, 12.0.sp, 12.0.sp),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  FittedBox(
                                     fit: BoxFit.scaleDown,
                                     child: controller.isExporting.value
-                                        ? Padding(
-                                            padding: EdgeInsets.all(4.0.sp),
+                                        ? SizedBox(
+                                            width: 20.0.sp,
+                                            height: 20.0.sp,
                                             child: Center(
                                               child: CircularProgressIndicator(
-                                                color: AppColor.red,
+                                                color: Colors.white,
+                                                strokeCap: StrokeCap.round,
                                                 strokeWidth: 3.0.sp,
                                               ),
                                             ),
@@ -481,13 +498,11 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
                                               color: Colors.white,
                                             ),
                                           ),
-                                  )
-                                : SizedBox(
-                                    width: 40.sp,
                                   ),
-                          ),
-                        ],
-                      ),
+                                ],
+                              ),
+                            )
+                          : const SizedBox.shrink(),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).padding.bottom + 12.0.sp,

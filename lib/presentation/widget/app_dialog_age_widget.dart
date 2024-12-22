@@ -54,7 +54,13 @@ class _AppDialogAgeWidgetState extends State<AppDialogAgeWidget> {
               },
               selectionOverlay: Container(
                 decoration: BoxDecoration(
-                    border: Border.symmetric(horizontal: BorderSide(color: const Color(0xFFCACACA), width: 2.0.sp))),
+                  border: Border.symmetric(
+                    horizontal: BorderSide(
+                      color: const Color(0xFFCACACA),
+                      width: 2.0.sp,
+                    ),
+                  ),
+                ),
               ),
               itemBuilder: (context, value) {
                 return Center(
@@ -77,29 +83,43 @@ class _AppDialogAgeWidgetState extends State<AppDialogAgeWidget> {
             Expanded(
               child: AppButton(
                 onPressed: widget.onPressCancel,
-                height: 60.0.sp,
-                width: Get.width,
+                padding: EdgeInsets.symmetric(
+                  vertical: 12.0.sp,
+                ),
                 color: AppColor.red,
                 radius: 10.0.sp,
                 child: Text(
                   TranslationConstants.cancel.tr,
                   textAlign: TextAlign.center,
-                  style: textStyle24700(),
+                  style: textStyle20700().merge(
+                    TextStyle(
+                      color: AppColor.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0.sp,
+                    ),
+                  ),
                 ),
               ),
             ),
             SizedBox(width: 8.0.sp),
             Expanded(
               child: AppButton(
-                height: 60.0.sp,
-                width: Get.width,
+                padding: EdgeInsets.symmetric(
+                  vertical: 12.0.sp,
+                ),
                 onPressed: () => widget.onPressSave!(_value),
                 color: AppColor.primaryColor,
                 radius: 10.0.sp,
                 child: Text(
                   TranslationConstants.save.tr,
                   textAlign: TextAlign.center,
-                  style: textStyle24700(),
+                  style: textStyle20700().merge(
+                    TextStyle(
+                      color: AppColor.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0.sp,
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -30,9 +30,11 @@ class AddBloodPressureDialog extends GetView<AddBloodPressureController> {
   @override
   Widget build(BuildContext context) {
     controller.context = context;
+
     if (bloodPressureModel != null) {
       controller.onEdit(bloodPressureModel!);
     }
+
     return AppDialog(
       firstButtonText: bloodPressureModel != null ? TranslationConstants.save.tr : TranslationConstants.add.tr,
       firstButtonCallback: () => _onAddData(),
@@ -49,7 +51,10 @@ class AddBloodPressureDialog extends GetView<AddBloodPressureController> {
               AppTouchable(
                 onPressed: controller.onSelectBloodPressureDate,
                 backgroundColor: AppColor.lightGray,
-                padding: EdgeInsets.symmetric(vertical: 8.sp, horizontal: 12.sp),
+                padding: EdgeInsets.symmetric(
+                  vertical: 8.sp,
+                  horizontal: 12.sp,
+                ),
                 child: Obx(
                   () => Text(
                     controller.stringBloodPrDate.value,
@@ -75,7 +80,7 @@ class AddBloodPressureDialog extends GetView<AddBloodPressureController> {
             ],
           ),
           SizedBox(
-            height: 42.sp,
+            height: 12.sp,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,7 +148,7 @@ class AddBloodPressureDialog extends GetView<AddBloodPressureController> {
             ],
           ),
           SizedBox(
-            height: 34.sp,
+            height: 12.sp,
           ),
           Obx(
             () => Container(
@@ -165,7 +170,7 @@ class AddBloodPressureDialog extends GetView<AddBloodPressureController> {
             ),
           ),
           SizedBox(
-            height: 16.sp,
+            height: 12.sp,
           ),
           AppTouchable(
             onPressed: controller.onShowBloodPressureInfo,
@@ -212,6 +217,9 @@ class AddBloodPressureDialog extends GetView<AddBloodPressureController> {
               ),
             ),
           ),
+          SizedBox(
+            height: 12.sp,
+          ),
           Obx(
             () => Row(
               children: BloodPressureType.values
@@ -253,7 +261,7 @@ class AddBloodPressureDialog extends GetView<AddBloodPressureController> {
             ),
           ),
           SizedBox(
-            height: 50.sp,
+            height: 24.sp,
           )
         ],
       ),

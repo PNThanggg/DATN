@@ -68,6 +68,8 @@ class _AppDialogGenderWidgetState extends State<AppDialogGenderWidget> {
                   style: textStyle20700().merge(
                     TextStyle(
                       color: AppConstant.listGender[i]['id'] == _value['id'] ? AppColor.primaryColor : AppColor.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16.0.sp,
                     ),
                   ),
                 ),
@@ -88,27 +90,37 @@ class _AppDialogGenderWidgetState extends State<AppDialogGenderWidget> {
               ],
             ),
           ),
-        SizedBox(height: 22.0.sp),
+        SizedBox(height: 20.0.sp),
         Row(
           children: [
             Expanded(
               child: AppButton(
                 onPressed: widget.onPressCancel,
-                height: 60.0.sp,
+                padding: EdgeInsets.symmetric(
+                  vertical: 12.0.sp,
+                ),
                 width: Get.width,
                 color: AppColor.red,
                 radius: 10.0.sp,
                 child: Text(
                   TranslationConstants.cancel.tr,
                   textAlign: TextAlign.center,
-                  style: textStyle24700(),
+                  style: textStyle20700().merge(
+                    TextStyle(
+                      color: AppColor.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0.sp,
+                    ),
+                  ),
                 ),
               ),
             ),
             SizedBox(width: 8.0.sp),
             Expanded(
               child: AppButton(
-                height: 60.0.sp,
+                padding: EdgeInsets.symmetric(
+                  vertical: 12.0.sp,
+                ),
                 width: Get.width,
                 onPressed: () => widget.onPressSave!(_value),
                 color: AppColor.primaryColor,
@@ -116,7 +128,13 @@ class _AppDialogGenderWidgetState extends State<AppDialogGenderWidget> {
                 child: Text(
                   TranslationConstants.save.tr,
                   textAlign: TextAlign.center,
-                  style: textStyle24700(),
+                  style: textStyle20700().merge(
+                    TextStyle(
+                      color: AppColor.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0.sp,
+                    ),
+                  ),
                 ),
               ),
             ),

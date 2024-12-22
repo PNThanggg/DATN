@@ -135,16 +135,21 @@ class AppDialog extends StatelessWidget {
   Widget _buildGroupButtons() {
     if ((secondButtonText ?? '').isEmpty) {
       return AppButton(
-        height: 60.0.sp,
         width: Get.width,
         onPressed: firstButtonCallback ?? Get.back,
         text: firstButtonText,
         color: AppColor.primaryColor,
+        padding: EdgeInsets.symmetric(
+          vertical: 12.0.sp,
+        ),
         radius: 10.0.sp,
         child: Text(
           firstButtonText,
           textAlign: TextAlign.center,
-          style: textStyle24700(),
+          style: textStyle24700().copyWith(
+            fontWeight: FontWeight.w500,
+            fontSize: 16.0.sp,
+          ),
         ),
       );
     }
@@ -153,31 +158,41 @@ class AppDialog extends StatelessWidget {
         Expanded(
           child: AppButton(
             onPressed: secondButtonCallback,
-            height: 60.0.sp,
             width: Get.width,
             text: secondButtonText,
             color: AppColor.red,
             radius: 10.0.sp,
+            padding: EdgeInsets.symmetric(
+              vertical: 12.0.sp,
+            ),
             child: Text(
               secondButtonText ?? '',
               textAlign: TextAlign.center,
-              style: textStyle24700(),
+              style: textStyle24700().copyWith(
+                fontWeight: FontWeight.w500,
+                fontSize: 16.0.sp,
+              ),
             ),
           ),
         ),
         SizedBox(width: 8.0.sp),
         Expanded(
           child: AppButton(
-            height: 60.0.sp,
             width: Get.width,
             onPressed: firstButtonCallback ?? Get.back,
             text: firstButtonText,
+            padding: EdgeInsets.symmetric(
+              vertical: 12.0.sp,
+            ),
             color: AppColor.primaryColor,
             radius: 10.0.sp,
             child: Text(
               firstButtonText,
               textAlign: TextAlign.center,
-              style: textStyle24700(),
+              style: textStyle24700().copyWith(
+                fontWeight: FontWeight.w500,
+                fontSize: 16.0.sp,
+              ),
             ),
           ),
         ),
@@ -188,16 +203,19 @@ class AppDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    var dialogWidth = min<double>(width * 0.86, 400);
+    double dialogWidth = min<double>(width * 0.9, 400);
 
     return Dialog(
-      insetPadding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0.sp),
+        borderRadius: BorderRadius.circular(12.0.sp),
       ),
       elevation: 0.0,
       backgroundColor: backgroundColor ?? Colors.transparent,
       child: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(
+          vertical: 12.0.sp,
+          horizontal: 8.0.sp,
+        ),
         physics: !hasScroll ? const NeverScrollableScrollPhysics() : null,
         child: Stack(
           children: [
@@ -218,8 +236,10 @@ class AppDialog extends StatelessWidget {
                               title!,
                               textAlign: TextAlign.center,
                               style: textStyle20700().merge(
-                                const TextStyle(
+                                TextStyle(
                                   color: AppColor.black,
+                                  fontSize: 20.0.sp,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                             )
@@ -233,8 +253,7 @@ class AppDialog extends StatelessWidget {
                                 style: TextStyle(
                                   color: AppColor.grayText,
                                   fontSize: 16.0.sp,
-                                  fontWeight: FontWeight.w400,
-                                  fontFamily: 'Roboto',
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             )

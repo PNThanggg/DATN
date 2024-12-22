@@ -115,7 +115,7 @@ class HeartBeatController extends GetxController with AlarmDialogMixin {
     chartSelectedX.value = 0.0;
   }
 
-  addHeartRateData(HeartRateModel heartRateModel) async {
+  void addHeartRateData(HeartRateModel heartRateModel) async {
     appController.listHeartRateModelAll.add(heartRateModel);
     _handleData();
     final prefs = await SharedPreferences.getInstance();
@@ -131,7 +131,7 @@ class HeartBeatController extends GetxController with AlarmDialogMixin {
     );
   }
 
-  deleteHeartRateData(HeartRateModel heartRateModel) async {
+  Future<void> deleteHeartRateData(HeartRateModel heartRateModel) async {
     HeartRateModel? heartRateModelTemp = appController.listHeartRateModelAll.firstWhereOrNull(
       (element) => element.timeStamp == heartRateModel.timeStamp,
     );
@@ -203,7 +203,6 @@ class HeartBeatController extends GetxController with AlarmDialogMixin {
         inputDateTime: DateTime.now(),
         inputValue: 70,
         onPressCancel: () {
-          // showInterstitialAds(Get.back);
           Get.back();
         },
         onPressAdd: (dateTime, value) async {
@@ -215,12 +214,14 @@ class HeartBeatController extends GetxController with AlarmDialogMixin {
 
   void _addData(dateTime, value) {
     if (Get.isRegistered<HeartBeatController>()) {
-      Get.find<HeartBeatController>().addHeartRateData(HeartRateModel(
-        timeStamp: dateTime.millisecondsSinceEpoch,
-        value: value,
-        age: appController.currentUser.value.age ?? 30,
-        genderId: appController.currentUser.value.genderId ?? '0',
-      ));
+      Get.find<HeartBeatController>().addHeartRateData(
+        HeartRateModel(
+          timeStamp: dateTime.millisecondsSinceEpoch,
+          value: value,
+          age: appController.currentUser.value.age ?? 30,
+          genderId: appController.currentUser.value.genderId ?? '0',
+        ),
+      );
     }
 
     HomeWidgetConfig.sendAndUpdate({
@@ -234,7 +235,7 @@ class HeartBeatController extends GetxController with AlarmDialogMixin {
     // _recentBPM = 0;
   }
 
-  onPressExport() async {
+  Future<void> onPressExport() async {
     isExporting.value = true;
     List<String> header = [];
     List<List<String>> listOfData = [];
@@ -259,7 +260,12 @@ class HeartBeatController extends GetxController with AlarmDialogMixin {
         ],
       );
     }
-    String csvData = const ListToCsvConverter().convert([header, ...listOfData]);
+    String csvData = const ListToCsvConverter().convert(
+      [
+        header,
+        ...listOfData,
+      ],
+    );
     Directory? directoryTemp = await getTemporaryDirectory();
     String? path = '${directoryTemp.path}/${DateTime.now().millisecondsSinceEpoch}.csv';
     final bytes = utf8.encode(csvData);

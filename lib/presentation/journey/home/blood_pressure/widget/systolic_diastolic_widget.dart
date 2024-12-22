@@ -24,7 +24,10 @@ class SystolicDiastolicWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ContainerWidget(
-      padding: EdgeInsets.symmetric(vertical: 10.sp, horizontal: 20.sp),
+      padding: EdgeInsets.symmetric(
+        vertical: 10.sp,
+        horizontal: 20.sp,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -91,7 +94,7 @@ class _ItemWidget extends StatelessWidget {
               ],
             ),
             SizedBox(
-              width: 10.sp,
+              width: 12.sp,
             ),
             Column(
               mainAxisSize: MainAxisSize.min,

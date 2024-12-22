@@ -72,7 +72,6 @@ class AppHeader extends StatelessWidget {
                       onPressed: Get.back,
                     ),
                   ),
-              SizedBox(width: additionSpaceButtonLeft ?? 0),
               Expanded(
                 child: Center(
                   child: middleWidget ??

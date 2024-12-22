@@ -66,7 +66,7 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
     super.initState();
   }
 
-  _updateDateTimeString(DateTime? dateTime) {
+  void _updateDateTimeString(DateTime? dateTime) {
     if (dateTime != null) {
       setState(() {
         _date = DateFormat('MMM dd, yyyy').format(dateTime);
@@ -75,7 +75,7 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
     }
   }
 
-  _updateStatusByValue(int value) {
+  void _updateStatusByValue(int value) {
     if ((_value ?? 0) < 60) {
       _restingHeartRateValue = '< 60';
       _restingHeartRateStatus = TranslationConstants.slow.tr;
@@ -94,7 +94,7 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
     }
   }
 
-  _onPressDate() async {
+  void _onPressDate() async {
     final result = await showDatePicker(
       context: context,
       initialDate: _dateTime ?? DateTime.now(),
@@ -103,7 +103,12 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
       initialEntryMode: DatePickerEntryMode.calendarOnly,
       locale: Get.find<AppController>().currentLocale,
       builder: (context, Widget? child) => Theme(
-        data: ThemeData(colorScheme: const ColorScheme.light(onPrimary: AppColor.white, primary: AppColor.red)),
+        data: ThemeData(
+          colorScheme: const ColorScheme.light(
+            onPrimary: AppColor.white,
+            primary: AppColor.red,
+          ),
+        ),
         child: child!,
       ),
     );
@@ -113,13 +118,18 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
     }
   }
 
-  _onPressTime() async {
+  void _onPressTime() async {
     final result = await showTimePicker(
       context: context,
       initialTime: TimeOfDay(hour: _dateTime?.hour ?? 0, minute: _dateTime?.minute ?? 0),
       initialEntryMode: TimePickerEntryMode.dialOnly,
       builder: (context, Widget? child) => Theme(
-        data: ThemeData(colorScheme: const ColorScheme.light(onPrimary: AppColor.white, primary: AppColor.red)),
+        data: ThemeData(
+          colorScheme: const ColorScheme.light(
+            onPrimary: AppColor.white,
+            primary: AppColor.red,
+          ),
+        ),
         child: child!,
       ),
     );
@@ -130,7 +140,7 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
     }
   }
 
-  _onPressAge() {
+  void _onPressAge() {
     int initialAge = _appController.currentUser.value.age ?? 30;
     initialAge = initialAge < 2
         ? 2
@@ -158,9 +168,10 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
     );
   }
 
-  _onPressGender() {
-    Map? initialGender = AppConstant.listGender
-        .firstWhereOrNull((element) => element['id'] == (_appController.currentUser.value.genderId ?? '0'));
+  void _onPressGender() {
+    Map? initialGender = AppConstant.listGender.firstWhereOrNull(
+      (element) => element['id'] == (_appController.currentUser.value.genderId ?? '0'),
+    );
     showAppDialog(
       context,
       TranslationConstants.choseYourAge.tr,
@@ -171,14 +182,18 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
         onPressCancel: Get.back,
         onPressSave: (value) {
           Get.back();
-          _appController
-              .updateUser(UserModel(age: _appController.currentUser.value.age ?? 30, genderId: value['id'] ?? '0'));
+          _appController.updateUser(
+            UserModel(
+              age: _appController.currentUser.value.age ?? 30,
+              genderId: value['id'] ?? '0',
+            ),
+          );
         },
       ),
     );
   }
 
-  _onPressHint() {
+  void _onPressHint() {
     showAppDialog(
       context,
       TranslationConstants.heartRate.tr,
@@ -272,16 +287,24 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
           child: Row(
             children: [
               AppTouchable(
-                  onPressed: widget.allowChange == true ? _onPressDate : null,
-                  child: Text(_date, style: textStyle18500())),
+                onPressed: widget.allowChange == true ? _onPressDate : null,
+                child: Text(
+                  _date,
+                  style: textStyle18500(),
+                ),
+              ),
               const Spacer(),
               AppTouchable(
-                  onPressed: widget.allowChange == true ? _onPressTime : null,
-                  child: Text(_time, style: textStyle18500())),
+                onPressed: widget.allowChange == true ? _onPressTime : null,
+                child: Text(
+                  _time,
+                  style: textStyle18500(),
+                ),
+              ),
             ],
           ),
         ),
-        SizedBox(height: 18.0.sp),
+        SizedBox(height: 12.0.sp),
         widget.allowChange == true
             ? SizedBox(
                 width: 100.0.sp,
@@ -300,8 +323,13 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
                     },
                     selectionOverlay: Container(
                       decoration: BoxDecoration(
-                          border:
-                              Border.symmetric(horizontal: BorderSide(color: const Color(0xFFCACACA), width: 2.0.sp))),
+                        border: Border.symmetric(
+                          horizontal: BorderSide(
+                            color: const Color(0xFFCACACA),
+                            width: 2.0.sp,
+                          ),
+                        ),
+                      ),
                     ),
                     itemBuilder: (context, value) {
                       Color color = AppColor.primaryColor;
@@ -336,40 +364,46 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
                   height: 5 / 4,
                 ),
               ),
-        SizedBox(height: 4.0.sp),
+        SizedBox(height: 8.0.sp),
         Text(
           'BPM',
           style: TextStyle(
-            fontSize: 30.0.sp,
+            fontSize: 24.0.sp,
             fontWeight: FontWeight.w500,
             color: AppColor.black,
-            height: 37.5 / 30,
           ),
         ),
-        SizedBox(height: 20.0.sp),
+        SizedBox(height: 8.0.sp),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 12.0.sp, vertical: 8.0.sp),
+          padding: EdgeInsets.symmetric(
+            horizontal: 12.0.sp,
+            vertical: 8.0.sp,
+          ),
           decoration: BoxDecoration(
             color: _restingHeartRateColor,
             borderRadius: BorderRadius.circular(8.0.sp),
           ),
           child: Text(
             _restingHeartRateStatus,
-            style: textStyle20500().merge(const TextStyle(color: AppColor.white)),
+            style: textStyle20500().merge(
+              const TextStyle(
+                color: AppColor.white,
+              ),
+            ),
           ),
         ),
-        SizedBox(height: 32.0.sp),
+        SizedBox(height: 24.0.sp),
         AppTouchable(
           onPressed: _onPressHint,
           width: Get.width,
           padding: EdgeInsets.symmetric(vertical: 8.0.sp),
           margin: EdgeInsets.symmetric(horizontal: 12.0.sp),
           outlinedBorder: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(9.0.sp),
+            borderRadius: BorderRadius.circular(8.0.sp),
           ),
           decoration: BoxDecoration(
             color: AppColor.lightGray,
-            borderRadius: BorderRadius.circular(9.0.sp),
+            borderRadius: BorderRadius.circular(8.0.sp),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -379,7 +413,11 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
                 style: textStyle16400(),
               ),
               SizedBox(width: 4.0.sp),
-              Icon(Icons.info_outline, size: 18.0.sp, color: AppColor.black),
+              Icon(
+                Icons.info_outline,
+                size: 18.0.sp,
+                color: AppColor.black,
+              ),
             ],
           ),
         ),
@@ -457,33 +495,59 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
           children: [
             AppTouchable(
               onPressed: _onPressAge,
-              padding: EdgeInsets.symmetric(vertical: 8.0.sp, horizontal: 12.0.sp),
-              child: Obx(() => Text(
-                    '${TranslationConstants.age.tr}: ${_appController.currentUser.value.age ?? 30}',
-                    style: textStyle18400().merge(const TextStyle(
-                      shadows: [Shadow(color: AppColor.grayText2, offset: Offset(0, -5))],
+              padding: EdgeInsets.symmetric(
+                vertical: 8.0.sp,
+                horizontal: 12.0.sp,
+              ),
+              child: Obx(
+                () => Text(
+                  '${TranslationConstants.age.tr}: ${_appController.currentUser.value.age ?? 30}',
+                  style: textStyle18400().merge(
+                    const TextStyle(
+                      shadows: [
+                        Shadow(
+                          color: AppColor.grayText2,
+                          offset: Offset(0, -5),
+                        ),
+                      ],
                       color: Colors.transparent,
                       decoration: TextDecoration.underline,
                       decorationColor: AppColor.grayText2,
-                    )),
-                  )),
+                    ),
+                  ),
+                ),
+              ),
             ),
             SizedBox(width: 12.0.sp),
             AppTouchable(
               onPressed: _onPressGender,
-              padding: EdgeInsets.symmetric(vertical: 8.0.sp, horizontal: 12.0.sp),
+              padding: EdgeInsets.symmetric(
+                vertical: 8.0.sp,
+                horizontal: 12.0.sp,
+              ),
               child: Obx(() {
                 Map gender = AppConstant.listGender.firstWhere(
-                    (element) => element['id'] == _appController.currentUser.value.genderId,
-                    orElse: () => AppConstant.listGender[0]);
+                  (element) => element['id'] == _appController.currentUser.value.genderId,
+                  orElse: () => AppConstant.listGender[0],
+                );
                 return Text(
-                  chooseContentByLanguage(gender['nameEN'], gender['nameVN']),
-                  style: textStyle18400().merge(const TextStyle(
-                    shadows: [Shadow(color: AppColor.grayText2, offset: Offset(0, -5))],
-                    color: Colors.transparent,
-                    decoration: TextDecoration.underline,
-                    decorationColor: AppColor.grayText2,
-                  )),
+                  chooseContentByLanguage(
+                    gender['nameEN'],
+                    gender['nameVN'],
+                  ),
+                  style: textStyle18400().merge(
+                    const TextStyle(
+                      shadows: [
+                        Shadow(
+                          color: AppColor.grayText2,
+                          offset: Offset(0, -5),
+                        ),
+                      ],
+                      color: Colors.transparent,
+                      decoration: TextDecoration.underline,
+                      decorationColor: AppColor.grayText2,
+                    ),
+                  ),
                 );
               }),
             ),
@@ -495,29 +559,43 @@ class _AppDialogHeartRateWidgetState extends State<AppDialogHeartRateWidget> {
             Expanded(
               child: AppButton(
                 onPressed: widget.onPressCancel,
-                height: 60.0.sp,
-                width: Get.width,
+                padding: EdgeInsets.symmetric(
+                  vertical: 12.0.sp,
+                ),
                 color: AppColor.red,
                 radius: 10.0.sp,
                 child: Text(
                   TranslationConstants.cancel.tr,
                   textAlign: TextAlign.center,
-                  style: textStyle24700(),
+                  style: textStyle20700().merge(
+                    TextStyle(
+                      color: AppColor.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0.sp,
+                    ),
+                  ),
                 ),
               ),
             ),
             SizedBox(width: 8.0.sp),
             Expanded(
               child: AppButton(
-                height: 60.0.sp,
-                width: Get.width,
+                padding: EdgeInsets.symmetric(
+                  vertical: 12.0.sp,
+                ),
                 onPressed: () => widget.onPressAdd!(_dateTime ?? DateTime.now(), _value ?? 0),
                 color: AppColor.primaryColor,
                 radius: 10.0.sp,
                 child: Text(
                   TranslationConstants.add.tr,
                   textAlign: TextAlign.center,
-                  style: textStyle24700(),
+                  style: textStyle20700().merge(
+                    TextStyle(
+                      color: AppColor.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0.sp,
+                    ),
+                  ),
                 ),
               ),
             ),

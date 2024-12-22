@@ -83,11 +83,17 @@ class AlarmDialog extends GetView<AlarmDialogController> {
                     }
                   },
                   color: AppColor.red,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 12.0.sp,
+                  ),
                   radius: 10.0.sp,
                   child: Text(
                     TranslationConstants.cancel.tr,
                     textAlign: TextAlign.center,
-                    style: textStyle24700(),
+                    style: textStyle24700().copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0.sp,
+                    ),
                   ),
                 ),
               ),
@@ -105,10 +111,16 @@ class AlarmDialog extends GetView<AlarmDialogController> {
                       : null,
                   color: controller.isValid.value ? AppColor.primaryColor : AppColor.gray,
                   radius: 10.0.sp,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 12.0.sp,
+                  ),
                   child: Text(
                     TranslationConstants.save.tr,
                     textAlign: TextAlign.center,
-                    style: textStyle24700(),
+                    style: textStyle24700().copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16.0.sp,
+                    ),
                   ),
                 ),
               ),

@@ -61,22 +61,6 @@ class BloodPressureController extends GetxController with DateTimeMixin, AlarmDi
   }
 
   void onSetAlarm() {
-    // if (Platform.isIOS) {
-    //   showInterstitialAds(() {
-    //     showAddAlarm(
-    //         context: context,
-    //         alarmType: AlarmType.bloodPressure,
-    //         onPressCancel: Get.back,
-    //         onPressSave: _onSaveAlarm);
-    //   });
-    // } else {
-    //   showAddAlarm(
-    //       context: context,
-    //       alarmType: AlarmType.bloodPressure,
-    //       onPressCancel: Get.back,
-    //       onPressSave: _onSaveAlarm);
-    // }
-
     showAddAlarm(
       context: context,
       alarmType: AlarmType.bloodPressure,
@@ -104,7 +88,7 @@ class BloodPressureController extends GetxController with DateTimeMixin, AlarmDi
     appController.setAllowBloodPressureFirstTime(false);
   }
 
-  Future filterBloodPressure() async {
+  Future<void> filterBloodPressure() async {
     bloodPressureChartData.clear();
     final result = _bloodPressureUseCase.filterBloodPressureDate(
       filterStartDate.value.millisecondsSinceEpoch,
@@ -118,8 +102,12 @@ class BloodPressureController extends GetxController with DateTimeMixin, AlarmDi
       chartXValueSelected.value = bloodPressSelected.value.dateTime!.getMillisecondDateFormat('dd/MM/yyyy');
       chartMinDate.value = DateTime.fromMillisecondsSinceEpoch(result.first.dateTime!);
       chartMaxDate.value = DateTime.fromMillisecondsSinceEpoch(result.last.dateTime!);
-      final mapGroupData = groupBy(bloodPressures,
-          (p0) => DateFormat('dd/MM/yyyy').format(DateTime.fromMillisecondsSinceEpoch(p0.dateTime ?? 0)));
+      final mapGroupData = groupBy(
+        bloodPressures,
+        (p0) => DateFormat('dd/MM/yyyy').format(
+          DateTime.fromMillisecondsSinceEpoch(p0.dateTime ?? 0),
+        ),
+      );
       if (mapGroupData.isNotEmpty) {
         final lastKey = mapGroupData.keys.last;
         final lastValue = mapGroupData[lastKey];
@@ -131,7 +119,7 @@ class BloodPressureController extends GetxController with DateTimeMixin, AlarmDi
         final handleDate = DateFormat('dd/MM/yyyy').parse(key);
         final dataList = <BarChartDataModel>[];
         if (value.isNotEmpty) {
-          for (final item in value) {
+          for (BloodPressureModel item in value) {
             sysMin.value = item.systolic ?? 0;
             sysMax.value = item.systolic ?? 0;
             diaMax.value = item.diastolic ?? 0;
@@ -143,7 +131,12 @@ class BloodPressureController extends GetxController with DateTimeMixin, AlarmDi
               ),
             );
           }
-          bloodPressureChartData.add({"dateTime": handleDate.millisecondsSinceEpoch, "values": dataList});
+          bloodPressureChartData.add(
+            {
+              "dateTime": handleDate.millisecondsSinceEpoch,
+              "values": dataList,
+            },
+          );
         }
       });
     }

@@ -20,24 +20,28 @@ class EmptyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(),
         AppImageWidget.asset(
           path: imagePath,
           width: imageWidth,
         ),
+        SizedBox(
+          height: 8.0.sp,
+        ),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 52.sp),
+          padding: EdgeInsets.symmetric(horizontal: 32.sp),
           child: Text(
             message,
             style: textStyle20700().copyWith(
               color: AppColor.black,
+              fontWeight: FontWeight.w600,
+              fontSize: 16.0.sp,
             ),
             textAlign: TextAlign.center,
           ),
         ),
-        const SizedBox(),
       ],
     );
   }
