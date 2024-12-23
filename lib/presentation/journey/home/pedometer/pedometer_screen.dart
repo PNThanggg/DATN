@@ -21,8 +21,9 @@ class _PedometerScreenState extends State<PedometerScreen> {
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
   String _status = '?';
-  String _steps = '0'; // Initialize steps to '0'
-  bool _isWalking = false; // Track if the user is walking
+  int _initialSteps = 0;
+  int _currentSteps = 0;
+  bool _isWalking = false;
 
   @override
   void initState() {
@@ -30,10 +31,16 @@ class _PedometerScreenState extends State<PedometerScreen> {
     initPlatformState();
   }
 
+  @override
+  void dispose() {
+    _initialSteps = 0;
+    super.dispose();
+  }
+
   void onStepCount(StepCount event) {
     if (_isWalking) {
       setState(() {
-        _steps = event.steps.toString();
+        _currentSteps = event.steps - _initialSteps;
       });
     }
   }
@@ -42,6 +49,8 @@ class _PedometerScreenState extends State<PedometerScreen> {
     print(event);
     setState(() {
       _status = event.status;
+      print("event.status = ${event.status}");
+
       if (event.status == 'walking') {
         _isWalking = true;
       } else {
@@ -60,9 +69,6 @@ class _PedometerScreenState extends State<PedometerScreen> {
 
   void onStepCountError(error) {
     print('onStepCountError: $error');
-    setState(() {
-      _steps = 'Step Count not available';
-    });
   }
 
   Future<bool> _checkActivityRecognitionPermission() async {
@@ -85,7 +91,12 @@ class _PedometerScreenState extends State<PedometerScreen> {
     _pedestrianStatusStream.listen(onPedestrianStatusChanged).onError(onPedestrianStatusError);
 
     _stepCountStream = Pedometer.stepCountStream;
-    _stepCountStream.listen(onStepCount).onError(onStepCountError);
+    _stepCountStream.listen((stepCount) {
+      if (_initialSteps == 0) {
+        _initialSteps = stepCount.steps;
+      }
+      onStepCount(stepCount);
+    }).onError(onStepCountError);
 
     if (!mounted) return;
   }
@@ -120,7 +131,7 @@ class _PedometerScreenState extends State<PedometerScreen> {
                       style: TextStyle(fontSize: 30),
                     ),
                     Text(
-                      _steps,
+                      _currentSteps.toString(),
                       style: const TextStyle(fontSize: 60),
                     ),
                     const Divider(
