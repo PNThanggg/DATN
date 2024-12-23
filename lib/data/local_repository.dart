@@ -5,7 +5,6 @@ import '../common/util/app_util.dart';
 import '../common/util/share_preference_utils.dart';
 import '../domain/model/alarm_model.dart';
 import '../domain/model/blood_pressure_model.dart';
-import '../domain/model/blood_sugar_model.dart';
 import '../domain/model/bmi_model.dart';
 import '../domain/model/user_model.dart';
 
@@ -85,38 +84,6 @@ class LocalRepository {
 
   Future deleteBMI(String key) async {
     await _hiveConfig.bmiBox.delete(key);
-  }
-
-  /// Blood Sugar
-  Future<void> saveBloodSugar(BloodSugarModel model) async {
-    await _hiveConfig.bloodSugarBox.put(model.key, model);
-  }
-
-  List<BloodSugarModel> getAllBloodSugar() {
-    return _hiveConfig.bloodSugarBox.values.toList();
-  }
-
-  List<BloodSugarModel> getBloodSugarListByFilter({required int startDate, required int endDate, String? stateCode}) {
-    return _hiveConfig.bloodSugarBox.values.where((value) {
-      if (!isNullEmpty(stateCode)) {
-        return value.dateTime! >= startDate && value.dateTime! <= endDate && value.stateCode == stateCode;
-      }
-      return value.dateTime! >= startDate && value.dateTime! <= endDate;
-    }).toList();
-  }
-
-  List<BloodSugarModel> getAllBloodSugarByDate({required int startDate, required int endDate}) {
-    return _hiveConfig.bloodSugarBox.values
-        .where((value) => value.dateTime! >= startDate && value.dateTime! <= endDate)
-        .toList();
-  }
-
-  Future deleteBloodSugar(String key) async {
-    await _hiveConfig.bloodSugarBox.delete(key);
-  }
-
-  Future<int> getFreeAdCount() async {
-    return _sharePreferenceUtils.getInt("freeAdCount") ?? 0;
   }
 
   Future<bool> setFreeAdCount(int value) async {

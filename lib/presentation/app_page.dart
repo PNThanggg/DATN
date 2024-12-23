@@ -2,16 +2,12 @@ import 'package:get/get.dart';
 
 import '../common/constants/app_route.dart';
 import '../common/injector/binding/blood_pressure_binding.dart';
-import '../common/injector/binding/blood_suagr_binding.dart';
-import '../common/injector/binding/chat_binding.dart';
 import '../common/injector/binding/food_scanner_binding.dart';
 import '../common/injector/binding/heart_beat_binding.dart';
 import '../common/injector/binding/main_binding.dart';
 import '../common/injector/binding/splash_binding.dart';
 import '../common/injector/binding/weight_bmi_binding.dart';
-import 'journey/chat/chat_screen.dart';
 import 'journey/home/blood_pressure/blood_pressure_screen.dart';
-import 'journey/home/blood_sugar/blood_sugar_screen.dart';
 import 'journey/home/food_scanner/food_scanner_screen.dart';
 import 'journey/home/heart_beat/heart_beat_screen.dart';
 import 'journey/home/heart_beat/measure/measure_screen.dart';
@@ -47,11 +43,6 @@ class AppPage {
       binding: BloodPressureBinding(),
     ),
     GetPage(
-      name: AppRoute.bloodSugar,
-      page: () => const BloodSugarScreen(),
-      binding: BloodSugarBinding(),
-    ),
-    GetPage(
       name: AppRoute.weightBMI,
       page: () => const WeightBMIScreen(),
       binding: WeightBMIBinding(),
@@ -60,11 +51,6 @@ class AppPage {
       name: AppRoute.foodScanner,
       page: () => const FoodScannerScreen(),
       binding: FoodScannerBinding(),
-    ),
-    GetPage(
-      name: AppRoute.chatScreen,
-      page: () => const ChatScreen(),
-      binding: ChatBinding(),
     ),
   ];
 }

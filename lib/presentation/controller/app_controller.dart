@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../common/config/hive_config/hive_config.dart';
-import '../../common/config/home_widget_config.dart';
 import '../../common/constants/app_constant.dart';
 import '../../common/injector/app_di.dart';
 import '../../data/local_repository.dart';
@@ -111,7 +110,7 @@ class AppController extends SuperController {
   }
 
   _initNotificationSelectHandle() async {
-    const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('background');
+    const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('@mipmap/ic_launcher');
     final DarwinInitializationSettings initializationSettingsIOS = DarwinInitializationSettings(
       onDidReceiveLocalNotification: onDidReceiveLocalNotification,
     );

@@ -46,7 +46,9 @@ class MeasureScreen extends GetView<MeasureController> {
         ),
         AppTouchable.common(
           onPressed: controller.onPressStartMeasure,
-          height: 70.0.sp,
+          padding: EdgeInsets.symmetric(
+            vertical: 12.0.sp,
+          ),
           backgroundColor: AppColor.green,
           margin: EdgeInsets.fromLTRB(12.0.sp, 0, 12.0.sp, 0),
           child: Row(
@@ -54,7 +56,7 @@ class MeasureScreen extends GetView<MeasureController> {
             children: [
               AppImageWidget.asset(
                 path: AppImage.ic_heart_rate,
-                width: 48.0.sp,
+                width: 32.0.sp,
               ),
               SizedBox(width: 8.0.sp),
               Text(
@@ -142,9 +144,11 @@ class MeasureScreen extends GetView<MeasureController> {
         ),
         AppTouchable.common(
           onPressed: controller.onPressStopMeasure,
-          height: 70.0.sp,
           width: Get.width,
           backgroundColor: AppColor.red,
+          padding: EdgeInsets.symmetric(
+            vertical: 12.0.sp,
+          ),
           margin: EdgeInsets.fromLTRB(12.0.sp, 0, 12.0.sp, 0),
           child: Text(
             TranslationConstants.stop.tr,

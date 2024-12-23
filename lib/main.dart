@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -6,10 +5,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
-import 'package:workmanager/workmanager.dart';
 
 import 'common/config/hive_config/hive_config.dart';
-import 'common/config/home_widget_config.dart';
 import 'common/constants/app_constant.dart';
 import 'common/constants/app_route.dart';
 import 'common/injector/app_di.dart';
@@ -31,10 +28,6 @@ Future<void> main() async {
   await hiveConfig.init();
   await getIt<SharePreferenceUtils>().init();
   AppNotificationLocal.initNotificationLocal();
-  Workmanager().initialize(
-    HomeWidgetConfig.callbackDispatcher,
-    isInDebugMode: kDebugMode,
-  );
 
   tz.initializeTimeZones();
 

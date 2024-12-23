@@ -11,11 +11,11 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../common/config/home_widget_config.dart';
 import '../../../../common/constants/app_constant.dart';
 import '../../../../common/constants/app_route.dart';
 import '../../../../common/mixin/alarm_dialog_mixin.dart';
 import '../../../../common/util/app_util.dart';
+import '../../../../common/util/show_snack_bar.dart';
 import '../../../../common/util/translation/app_translation.dart';
 import '../../../../domain/enum/alarm_type.dart';
 import '../../../../domain/model/heart_rate_model.dart';
@@ -224,14 +224,8 @@ class HeartBeatController extends GetxController with AlarmDialogMixin {
       );
     }
 
-    HomeWidgetConfig.sendAndUpdate({
-      "day": DateFormat('MMM dd').format(dateTime),
-      "time": DateFormat('h:mm a').format(dateTime),
-      "bpm": value,
-    });
-
     Get.back();
-    showToast(TranslationConstants.addSuccess.tr);
+    showSnackBar(context, subtitle: TranslationConstants.addSuccess.tr);
     // _recentBPM = 0;
   }
 

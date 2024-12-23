@@ -17,8 +17,10 @@ class AlarmTypeEnum {
     if (id == null) {
       return AlarmType.heartRate;
     } else {
-      return AlarmType.values.firstWhere((type) => type.id == id,
-          orElse: () => AlarmType.heartRate);
+      return AlarmType.values.firstWhere(
+        (type) => type.id == id,
+        orElse: () => AlarmType.heartRate,
+      );
     }
   }
 }
@@ -30,8 +32,6 @@ enum AlarmType {
   @HiveField(1)
   bloodPressure,
   @HiveField(2)
-  bloodSugar,
-  @HiveField(3)
   weightAndBMI,
 }
 
@@ -42,8 +42,6 @@ extension AlarmTypeExtension on AlarmType {
         return AppColor.red;
       case AlarmType.bloodPressure:
         return AppColor.primaryColor;
-      case AlarmType.bloodSugar:
-        return AppColor.violet;
       case AlarmType.weightAndBMI:
         return AppColor.green;
     }
@@ -52,13 +50,11 @@ extension AlarmTypeExtension on AlarmType {
   String get tr {
     switch (this) {
       case AlarmType.heartRate:
-          return TranslationConstants.heartRate.tr;
+        return TranslationConstants.heartRate.tr;
       case AlarmType.bloodPressure:
-          return TranslationConstants.bloodPressure.tr;
-      case AlarmType.bloodSugar:
-          return TranslationConstants.bloodSugar.tr;
+        return TranslationConstants.bloodPressure.tr;
       case AlarmType.weightAndBMI:
-          return TranslationConstants.weightAndBMI.tr;
+        return TranslationConstants.weightAndBMI.tr;
     }
   }
 
@@ -69,8 +65,6 @@ extension AlarmTypeExtension on AlarmType {
         return TranslationConstants.heartRateNotiMsgs[randomIndex].tr;
       case AlarmType.bloodPressure:
         return TranslationConstants.bloodPressureNotiMsgs[randomIndex].tr;
-      case AlarmType.bloodSugar:
-        return TranslationConstants.bloodSugarNotiMsgs[randomIndex].tr;
       case AlarmType.weightAndBMI:
         return TranslationConstants.weightAndBMINotiMsgs[randomIndex].tr;
     }
@@ -82,8 +76,6 @@ extension AlarmTypeExtension on AlarmType {
         return AppRoute.heartBeatScreen;
       case AlarmType.bloodPressure:
         return AppRoute.bloodPressureScreen;
-      case AlarmType.bloodSugar:
-        return AppRoute.bloodSugar;
       case AlarmType.weightAndBMI:
         return AppRoute.weightBMI;
     }
@@ -103,22 +95,17 @@ extension AlarmTypeExtension on AlarmType {
         return 0;
       case AlarmType.bloodPressure:
         return 1;
-      case AlarmType.bloodSugar:
-        return 2;
       case AlarmType.weightAndBMI:
         return 3;
     }
   }
 
-
   String get icon {
-    switch(this) {
+    switch (this) {
       case AlarmType.heartRate:
         return AppImage.ic_heart_rate;
       case AlarmType.bloodPressure:
         return AppImage.ic_blood_pressure;
-      case AlarmType.bloodSugar:
-        return AppImage.ic_blood_sugar;
       case AlarmType.weightAndBMI:
         return AppImage.ic_weight_and_bmi;
     }

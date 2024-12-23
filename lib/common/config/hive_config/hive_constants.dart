@@ -9,7 +9,6 @@ class HiveTypeConstants {
 
 class HiveKey {
   static const userModel = "userModel";
-  static const bloodPressureModel = "bloodPressureModel";
   static const alarmModel = "alarmModel";
   static const alarmType = "alarmType";
   static const bmiModel = "bmiModel";
@@ -20,5 +19,4 @@ class HiveBox {
   static const String bloodPressureBox = "bloodPressureBox";
   static const String alarmBox = "alarmBox";
   static const String bmiBox = "bmiBox";
-  static const String bloodSugarBox = "bloodSugarBox";
 }

@@ -22,8 +22,10 @@ class SensorValue {
   ///
   /// Map a list of [data] samples to a JSON formatted array. This is
   /// particularly useful to store [data] to database.
-  static List<Map<String, dynamic>> toJSONArray(List<SensorValue> data) =>
-      List.generate(data.length, (index) => data[index].toJSON());
+  static List<Map<String, dynamic>> toJSONArray(List<SensorValue> data) => List.generate(
+        data.length,
+        (index) => data[index].toJSON(),
+      );
 }
 
 /// Obtains heart beats per minute using camera sensor
@@ -96,12 +98,10 @@ class HeartBPMDialog extends StatefulWidget {
   /// ```
   void setAlpha(double a) {
     if (a <= 0) {
-      throw Exception(
-          "$HeartBPMDialog: smoothing factor cannot be 0 or negative");
+      throw Exception("$HeartBPMDialog: smoothing factor cannot be 0 or negative");
     }
     if (a > 1) {
-      throw Exception(
-          "$HeartBPMDialog: smoothing factor cannot be greater than 1");
+      throw Exception("$HeartBPMDialog: smoothing factor cannot be greater than 1");
     }
     alpha = a;
   }
@@ -126,6 +126,7 @@ class HeartBPPView extends State<HeartBPMDialog> {
   @override
   void initState() {
     super.initState();
+
     _initController();
   }
 
@@ -140,6 +141,7 @@ class HeartBPPView extends State<HeartBPMDialog> {
     isCameraInitialized = false;
     if (_controller == null) return;
     // await _controller.stopImageStream();
+    await _controller!.setFlashMode(FlashMode.off);
     await _controller!.dispose();
     // while (_processing) {}
     // _controller = null;
@@ -154,15 +156,22 @@ class HeartBPPView extends State<HeartBPMDialog> {
       // 1. get list of all available cameras
       List<CameraDescription> cameras = await availableCameras();
       // 2. assign the preferred camera with low resolution and disable audio
-      _controller = CameraController(cameras.first, ResolutionPreset.low,
-          enableAudio: false, imageFormatGroup: ImageFormatGroup.yuv420);
+      _controller = CameraController(
+        cameras.first,
+        ResolutionPreset.low,
+        enableAudio: false,
+        imageFormatGroup: ImageFormatGroup.yuv420,
+      );
 
       // 3. initialize the camera
       await _controller!.initialize();
 
       // 4. set torch to ON and start image stream
-      Future.delayed(const Duration(milliseconds: 500))
-          .then((value) => _controller!.setFlashMode(FlashMode.torch));
+      Future.delayed(
+        const Duration(milliseconds: 500),
+      ).then(
+        (value) => _controller!.setFlashMode(FlashMode.torch),
+      );
 
       // 5. register image streaming callback
       _controller!.startImageStream((image) {
@@ -183,8 +192,10 @@ class HeartBPPView extends State<HeartBPMDialog> {
 
   static const int windowLength = 50;
   final List<SensorValue> measureWindow = List<SensorValue>.filled(
-      windowLength, SensorValue(time: DateTime.now(), value: 0),
-      growable: true);
+    windowLength,
+    SensorValue(time: DateTime.now(), value: 0),
+    growable: true,
+  );
 
   void _scanImage(CameraImage image) async {
     // make system busy
@@ -193,9 +204,7 @@ class HeartBPPView extends State<HeartBPMDialog> {
     // });
 
     // get the average value of the image
-    double avg =
-        image.planes.first.bytes.reduce((value, element) => value + element) /
-            image.planes.first.bytes.length;
+    double avg = image.planes.first.bytes.reduce((value, element) => value + element) / image.planes.first.bytes.length;
 
     measureWindow.removeAt(0);
     measureWindow.add(SensorValue(time: DateTime.now(), value: avg));
@@ -211,8 +220,7 @@ class HeartBPPView extends State<HeartBPMDialog> {
         );
       }
 
-      Future<void>.delayed(Duration(milliseconds: widget.sampleDelay))
-          .then((onValue) {
+      Future<void>.delayed(Duration(milliseconds: widget.sampleDelay)).then((onValue) {
         if (mounted) {
           setState(() {
             _processing = false;
@@ -241,13 +249,11 @@ class HeartBPPView extends State<HeartBPMDialog> {
     double tempBPM = 0;
     for (int i = 1; i < measureWindow.length; i++) {
       // find rising edge
-      if (measureWindow[i - 1].value < threshold &&
-          measureWindow[i].value > threshold) {
+      if (measureWindow[i - 1].value < threshold && measureWindow[i].value > threshold) {
         if (previousTimestamp != 0) {
           counter++;
-          tempBPM += 60000 /
-              (measureWindow[i].time.millisecondsSinceEpoch -
-                  previousTimestamp); // convert to per minute
+          tempBPM +=
+              60000 / (measureWindow[i].time.millisecondsSinceEpoch - previousTimestamp); // convert to per minute
         }
         previousTimestamp = measureWindow[i].time.millisecondsSinceEpoch;
       }

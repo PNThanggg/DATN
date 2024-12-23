@@ -11,17 +11,13 @@ class BloodHeaderWidget extends StatelessWidget {
   final String title;
   final Color background;
   final Widget extendWidget;
-  final Function() onExported;
   final LoadedType? exportLoaded;
-  final bool isLoading;
 
   const BloodHeaderWidget({
     super.key,
     required this.title,
     required this.background,
     required this.extendWidget,
-    required this.onExported,
-    required this.isLoading,
     this.exportLoaded,
   });
 

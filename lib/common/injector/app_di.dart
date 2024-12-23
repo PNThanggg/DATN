@@ -3,7 +3,6 @@ import 'package:get_it/get_it.dart';
 import '../../data/local_repository.dart';
 import '../../domain/usecase/alarm_usecase.dart';
 import '../../domain/usecase/blood_pressure_usecase.dart';
-import '../../domain/usecase/blood_sugar_usecase.dart';
 import '../../domain/usecase/bmi_usecase.dart';
 import '../config/hive_config/hive_config.dart';
 import '../util/share_preference_utils.dart';
@@ -43,11 +42,6 @@ void _configDomainDI() {
   );
   getIt.registerSingleton(
     BMIUseCase(
-      getIt<LocalRepository>(),
-    ),
-  );
-  getIt.registerSingleton(
-    BloodSugarUseCase(
       getIt<LocalRepository>(),
     ),
   );

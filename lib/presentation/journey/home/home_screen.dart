@@ -173,37 +173,6 @@ class HomeScreen extends GetView<HomeController> {
                         SizedBox(width: 16.0.sp),
                         Expanded(
                           child: AppTouchable.common(
-                            backgroundColor: const Color(0xFFBA8FFF),
-                            onPressed: controller.onPressBloodSugar,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20.0.sp
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                AppImageWidget.asset(
-                                  path: AppImage.bloodSugar,
-                                  width: 60.0.sp,
-                                ),
-                                SizedBox(height: 4.0.sp),
-                                Text(
-                                  TranslationConstants.bloodSugar.tr,
-                                  style: textStyle18500().copyWith(
-                                    color: AppColor.white,
-                                    fontSize: 16.0.sp,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16.0.sp),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: AppTouchable.common(
                             backgroundColor: const Color(0xFF6DB80D),
                             onPressed: controller.onPressWeightAndBMI,
                             padding: EdgeInsets.symmetric(
@@ -228,7 +197,11 @@ class HomeScreen extends GetView<HomeController> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 16.0.sp),
+                      ],
+                    ),
+                    SizedBox(height: 16.0.sp),
+                    Row(
+                      children: [
                         Expanded(
                           child: AppTouchable.common(
                             backgroundColor: const Color(0xFFFFEFC6),

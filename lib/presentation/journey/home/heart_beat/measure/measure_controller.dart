@@ -3,10 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../../../common/config/home_widget_config.dart';
 import '../../../../../common/mixin/reward_ads_mixin.dart';
 import '../../../../../common/util/app_permission.dart';
 import '../../../../../common/util/app_util.dart';
@@ -73,12 +71,6 @@ class MeasureController extends GetxController with RewardAdsMixin {
                   ),
                 );
               }
-
-              HomeWidgetConfig.sendAndUpdate({
-                "day": DateFormat('MMM dd').format(dateTime),
-                "time": DateFormat('h:mm a').format(dateTime),
-                "bpm": value,
-              });
 
               Get.back();
               Get.back();
