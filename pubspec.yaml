@@ -48,6 +48,7 @@ dependencies:
   flutter_inappwebview: ^6.1.5
   carousel_slider: ^5.0.0
   pedometer: ^4.0.2
+  mobile_scanner: ^6.0.2
 
 dev_dependencies:
   flutter_test:

@@ -109,6 +109,7 @@ class BMIDetailWidget extends StatelessWidget {
                     bmiType.bmiName,
                     style: textStyle20600().copyWith(
                       color: AppColor.white,
+                      fontSize: 16.0.sp,
                     ),
                   ),
                 ),

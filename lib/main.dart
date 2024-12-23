@@ -15,7 +15,6 @@ import 'common/util/app_notification_local.dart';
 import 'common/util/share_preference_utils.dart';
 import 'common/util/translation/app_translation.dart';
 import 'presentation/app_page.dart';
-import 'presentation/theme/app_color.dart';
 
 late AndroidNotificationChannel channel;
 
@@ -58,7 +57,16 @@ Future<void> main() async {
         locale: AppConstant.availableLocales[1],
         fallbackLocale: AppConstant.availableLocales[0],
         theme: ThemeData(
-          primaryColor: AppColor.primaryColor,
+          primaryColor: Colors.white,
+          iconButtonTheme: IconButtonThemeData(
+            style: ButtonStyle(
+              iconColor: WidgetStateProperty.resolveWith<Color>(
+                (states) {
+                  return Colors.white;
+                },
+              ),
+            ),
+          ),
           fontFamily: 'Poppins',
           textSelectionTheme: const TextSelectionThemeData(
             selectionHandleColor: Colors.transparent,

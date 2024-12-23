@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -98,6 +99,8 @@ class _PedometerScreenState extends State<PedometerScreen> {
           AppHeader(
             title: "Pedometer",
             leftWidget: AppTouchable.common(
+              width: 40.0.sp,
+              height: 40.0.sp,
               onPressed: () => Get.back(),
               decoration: const BoxDecoration(boxShadow: null),
               child: const Icon(

@@ -83,68 +83,73 @@ class AddBloodPressureDialog extends GetView<AddBloodPressureController> {
             height: 12.sp,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ScrollBloodPressureValueWidget(
-                  title: TranslationConstants.systolic.tr,
-                  childCount: 281,
-                  initItem: controller.systolic.value - 20,
-                  onSelectedItemChanged: controller.onSelectSys,
-                  itemBuilder: (ctx, value) {
-                    return Center(
-                      child: Obx(
-                        () => Text(
-                          '${value + 20}',
-                          style: TextStyle(
-                            color: controller.bloodPressureType.value.color,
-                            fontSize: 40.0.sp,
-                            fontWeight: FontWeight.w700,
-                            height: 5 / 4,
+              Expanded(
+                child: ScrollBloodPressureValueWidget(
+                    title: TranslationConstants.systolic.tr,
+                    childCount: 281,
+                    initItem: controller.systolic.value - 20,
+                    onSelectedItemChanged: controller.onSelectSys,
+                    itemBuilder: (ctx, value) {
+                      return Center(
+                        child: Obx(
+                          () => Text(
+                            '${value + 20}',
+                            style: TextStyle(
+                              color: controller.bloodPressureType.value.color,
+                              fontSize: 40.0.sp,
+                              fontWeight: FontWeight.w700,
+                              height: 5 / 4,
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-              ScrollBloodPressureValueWidget(
-                  title: TranslationConstants.diastolic.tr,
-                  childCount: 281,
-                  initItem: controller.diastolic.value - 20,
-                  onSelectedItemChanged: controller.onSelectDia,
-                  itemBuilder: (ctx, value) {
-                    return Center(
-                      child: Obx(
-                        () => Text(
-                          '${value + 20}',
-                          style: TextStyle(
-                            color: controller.bloodPressureType.value.color,
-                            fontSize: 40.0.sp,
-                            fontWeight: FontWeight.w700,
-                            height: 5 / 4,
+                      );
+                    }),
+              ),
+              Expanded(
+                child: ScrollBloodPressureValueWidget(
+                    title: TranslationConstants.diastolic.tr,
+                    childCount: 281,
+                    initItem: controller.diastolic.value - 20,
+                    onSelectedItemChanged: controller.onSelectDia,
+                    itemBuilder: (ctx, value) {
+                      return Center(
+                        child: Obx(
+                          () => Text(
+                            '${value + 20}',
+                            style: TextStyle(
+                              color: controller.bloodPressureType.value.color,
+                              fontSize: 40.0.sp,
+                              fontWeight: FontWeight.w700,
+                              height: 5 / 4,
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-              ScrollBloodPressureValueWidget(
-                  title: TranslationConstants.pulse.tr,
-                  initItem: controller.pulse.value - 20,
-                  childCount: 181,
-                  onSelectedItemChanged: controller.onSelectPules,
-                  itemBuilder: (ctx, value) {
-                    return Center(
-                      child: Obx(
-                        () => Text(
-                          '${value + 20}',
-                          style: TextStyle(
-                            color: controller.bloodPressureType.value.color,
-                            fontSize: 40.0.sp,
-                            fontWeight: FontWeight.w700,
-                            height: 5 / 4,
+                      );
+                    }),
+              ),
+              Expanded(
+                child: ScrollBloodPressureValueWidget(
+                    title: TranslationConstants.pulse.tr,
+                    initItem: controller.pulse.value - 20,
+                    childCount: 181,
+                    onSelectedItemChanged: controller.onSelectPules,
+                    itemBuilder: (ctx, value) {
+                      return Center(
+                        child: Obx(
+                          () => Text(
+                            '${value + 20}',
+                            style: TextStyle(
+                              color: controller.bloodPressureType.value.color,
+                              fontSize: 40.0.sp,
+                              fontWeight: FontWeight.w700,
+                              height: 5 / 4,
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    }),
+              ),
             ],
           ),
           SizedBox(

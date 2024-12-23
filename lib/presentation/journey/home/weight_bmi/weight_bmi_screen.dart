@@ -15,6 +15,7 @@ import '../../../theme/app_color.dart';
 import '../../../theme/theme_text.dart';
 import '../../../widget/app_container.dart';
 import '../../../widget/app_header.dart';
+import '../../../widget/app_touchable.dart';
 import '../../../widget/filter/filter_date_widget.dart';
 import '../widget/alarm_add_data_button.dart';
 import '../widget/empty_widget.dart';
@@ -150,20 +151,46 @@ class WeightBMIScreen extends GetView<WeightBMIController> {
             ),
           ),
           Obx(
-            () => controller.isExporting.value
-                ? Padding(
-                    padding: EdgeInsets.all(4.0.sp),
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        color: AppColor.primaryColor,
-                        strokeWidth: 3.0.sp,
-                      ),
+            () => controller.bmiList.isNotEmpty
+                ? AppTouchable.common(
+                    onPressed: controller.isExporting.value ? null : controller.exportData,
+                    padding: EdgeInsets.symmetric(
+                      vertical: 16.0.sp,
+                    ),
+                    backgroundColor: AppColor.green,
+                    margin: EdgeInsets.fromLTRB(12.0.sp, 0, 12.0.sp, 12.0.sp),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: controller.isExporting.value
+                              ? SizedBox(
+                                  width: 20.0.sp,
+                                  height: 20.0.sp,
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeCap: StrokeCap.round,
+                                      strokeWidth: 3.0.sp,
+                                    ),
+                                  ),
+                                )
+                              : Text(
+                                  TranslationConstants.export.tr,
+                                  textAlign: TextAlign.center,
+                                  style: textStyle18700().copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16.0.sp,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                        ),
+                      ],
                     ),
                   )
-                : ExportButton(
-                    titleColor: AppColor.green,
-                    onPressed: controller.exportData,
-                  ),
+                : const SizedBox.shrink(),
           ),
         ],
       ),

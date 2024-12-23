@@ -303,9 +303,9 @@ class HeartBeatScreen extends GetView<HeartBeatController> {
               width: 40.0.sp,
               height: 40.0.sp,
               onPressed: Get.back,
-              child: BackButton(
-                color: AppColor.white,
-                onPressed: Get.back,
+              child: const Icon(
+                Icons.arrow_back_rounded,
+                color: Colors.white,
               ),
             ),
             additionSpaceButtonLeft: 40.0.sp,
