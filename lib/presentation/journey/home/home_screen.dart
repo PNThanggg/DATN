@@ -148,9 +148,7 @@ class HomeScreen extends GetView<HomeController> {
                           child: AppTouchable.common(
                             backgroundColor: const Color(0xFF97C7FF),
                             onPressed: controller.onPressBloodPressure,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20.0.sp
-                            ),
+                            padding: EdgeInsets.symmetric(vertical: 20.0.sp),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -175,9 +173,7 @@ class HomeScreen extends GetView<HomeController> {
                           child: AppTouchable.common(
                             backgroundColor: const Color(0xFF6DB80D),
                             onPressed: controller.onPressWeightAndBMI,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20.0.sp
-                            ),
+                            padding: EdgeInsets.symmetric(vertical: 20.0.sp),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -204,11 +200,35 @@ class HomeScreen extends GetView<HomeController> {
                       children: [
                         Expanded(
                           child: AppTouchable.common(
+                            backgroundColor: const Color(0xFFC9CDCE),
+                            onPressed: controller.onPressPedometer,
+                            padding: EdgeInsets.symmetric(vertical: 20.0.sp),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                AppImageWidget.asset(
+                                  path: AppImage.icPedometer,
+                                  width: 60.0.sp,
+                                ),
+                                SizedBox(height: 4.0.sp),
+                                Text(
+                                  "Pedometer",
+                                  style: textStyle18500().copyWith(
+                                    color: AppColor.white,
+                                    fontSize: 16.0.sp,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 16.0.sp),
+                        Expanded(
+                          child: AppTouchable.common(
                             backgroundColor: const Color(0xFFFFEFC6),
                             onPressed: controller.onPressFoodScanner,
-                            padding: EdgeInsets.symmetric(
-                              vertical: 20.0.sp
-                            ),
+                            padding: EdgeInsets.symmetric(vertical: 20.0.sp),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

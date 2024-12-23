@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../common/constants/app_route.dart';
+import 'pedometer/pedometer_screen.dart';
 
 class HomeController extends GetxController {
   void onPressHeartBeat() async {
@@ -17,5 +18,9 @@ class HomeController extends GetxController {
 
   void onPressFoodScanner() async {
     Get.toNamed(AppRoute.foodScanner);
+  }
+
+  void onPressPedometer() async {
+    Get.to(() => const PedometerScreen());
   }
 }
