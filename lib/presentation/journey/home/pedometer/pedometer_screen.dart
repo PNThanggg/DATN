@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../common/util/disable_glow_behavior.dart';
+import '../../../theme/app_color.dart';
 import '../../../widget/app_container.dart';
 import '../../../widget/app_header.dart';
+import '../../../widget/app_touchable.dart';
 
 class PedometerScreen extends StatefulWidget {
   const PedometerScreen({super.key});
@@ -16,7 +19,9 @@ class PedometerScreen extends StatefulWidget {
 class _PedometerScreenState extends State<PedometerScreen> {
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
-  String _status = '?', _steps = '?';
+  String _status = '?';
+  String _steps = '0'; // Initialize steps to '0'
+  bool _isWalking = false; // Track if the user is walking
 
   @override
   void initState() {
@@ -25,16 +30,22 @@ class _PedometerScreenState extends State<PedometerScreen> {
   }
 
   void onStepCount(StepCount event) {
-    print(event);
-    setState(() {
-      _steps = event.steps.toString();
-    });
+    if (_isWalking) {
+      setState(() {
+        _steps = event.steps.toString();
+      });
+    }
   }
 
   void onPedestrianStatusChanged(PedestrianStatus event) {
     print(event);
     setState(() {
       _status = event.status;
+      if (event.status == 'walking') {
+        _isWalking = true;
+      } else {
+        _isWalking = false;
+      }
     });
   }
 
@@ -84,8 +95,16 @@ class _PedometerScreenState extends State<PedometerScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const AppHeader(
+          AppHeader(
             title: "Pedometer",
+            leftWidget: AppTouchable.common(
+              onPressed: () => Get.back(),
+              decoration: const BoxDecoration(boxShadow: null),
+              child: const Icon(
+                Icons.arrow_back_rounded,
+                color: AppColor.black,
+              ),
+            ),
           ),
           Expanded(
             child: ScrollConfiguration(
